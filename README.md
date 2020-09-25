@@ -9,9 +9,9 @@ It can transform any two converted CSV file using MySQL operations like Join, So
 ## Get Started:
 
 
-`https://github.com/`
+`https://github.com/PRAJWAL7HS/Data-Visualator`
 
-`cd Data-Visualator`
+`cd DataVisualator`
 
 ## Running project
 
@@ -44,5 +44,5 @@ You need to have Python and pip installed.
 
 ## AUTHOR
 
-Created and Maintained by [@Nipan83](https://github.com/Nipan83) - nipandas83@gmail.com
+Created and Maintained by [@Prajwal h s](https://github.com/PRAJWAL7HS) - prajwal7nov@gmail.com
 
