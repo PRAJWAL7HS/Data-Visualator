@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Data Analyser</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div style="background-color: white;border-radius:2px" class="container">
+    
+    <h2 style="padding-left:10px;text-align: left;">  Transformed Table</h2>
+    
+
+    <hr>
+      <table class="table">
+    <thead>
+      <tr class="" style="text-align: center; padding-top:10px;">
+      
+       {% for k in header.0 %}
+
+       
+                <th style="text-align: center;">{{k}}</th>
+                
+             
+        
+
+      {% endfor %}
+      {% for k in header.1 %}
+                {% if k != "CustomerID" %}
+
+       
+                <th style="text-align: center;">{{k}}</th>
+                {% endif %}
+                
+             
+        
+
+      {% endfor %}
+        
+         
+
+        
+      </tr>
+    </thead>
+    <tbody>
+          {% for i in res2   %}
+
+       
+                <tr class="" style="text-align: center;color:black;padding-top:10px;">
+                    {% for j in i   %}
+                
+               <td style="padding:13px;">{{ j }}</td>
+                     
+                     {% endfor %}
+                
+                    
+                
+              </tr>
+        
+
+      {% endfor %}
+      
+      
+    </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

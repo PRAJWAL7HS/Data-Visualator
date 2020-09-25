@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Data Analyser</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Data Analyser</a>
+    </div>
+    
+  </div>
+</nav>
+  
+<div class="container">
+<div>
+  
+  
+</div>
+  <div class="row">
+  <form action="/" method="post"> {% csrf_token %}
+  	
+  	<div class="col-md-3">
+  	<h4>1. Select Format</h4>
+
+  	<div style="padding-top: 30px"></div>
+  	
+    <input type="radio"  name="select" value="1" id="mysql"> MySQL<br><br>
+  	<div id="viewmysql" style="display: none;">
+  	  <input type="text" name="username" value="root" readonly><br>
+  	  <input type="password" id="password" name="password" placeholder="password" value=""><br>
+	  <input type="text" name="localhost" id="localhost" value="localhost" readonly>
+  	</div>
+  <hr>
+  <input type="radio" name="select" value="2" id="csv"> CSV<br><br>
+  <div id="viewcsv" style="display: none;">
+  	  <input name="csvfile" type="file" id="csvfile" accept=".csv" />
+  </div>
+  <div style="padding-top: 20px"></div>
+  
+
+ <button type="button" class="btn btn-success" onclick="selectsource()" >submit</button>
+  		
+  	</div>
+  	<div class="col-md-3">
+  	<h4>2. Select Source</h4>
+    <div style="padding-top: 20px;"></div>
+    <h4><span id="selectmysql">MySQL</span><span id="selectcsv" style="padding-left:5em">CSV</span></h4>
+    <div style="padding-left: 20px;">
+     <button type="button" style="display: none; background-color: black;padding: 5px" id="showcsv"><span style="color: white" id="1" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true"></span></button>
+    </div>
+    <div id="showmy" style="display: none;">
+    
+    <h5 style="border-bottom: 1px solid #333;padding-bottom: 10px;" onclick="">{{databases.0}}
+      </h5>
+
+  		<h5 style="border-bottom: 1px solid #333;padding-bottom: 10px;" onclick="show()">{{databases.1}}
+  		</h5>
+  		<div id="7" style="display: none;">
+      
+
+  			{% if tables.0 %}
+
+  				<button id="button0" onclick="table0()" draggable="true" ondragstart="dragStart(event)" type="button" class="btn btn-default">
+      				{{tables.0}}
+
+        
+      			</button>
+
+            <div id="table0" style="display: none;">
+            
+              {% for z in schema.0 %}
+
+                
+                 
+
+              
+              <li>{{z}}</li>
+                
+
+              {% endfor %}
+            
+            </div>
+            {% endif %}
+      			<br>
+            
+            {% if tables.1 %}
+            <button id="button1" onclick="table1()" draggable="true" ondragstart="dragStart(event)" type="button" class="btn btn-default">
+              {{tables.1}}
+
+        
+            </button>
+
+            <div style="display: none;" id="table1">
+            
+              {% for z in schema.1 %}
+
+                
+                 
+
+              
+              <li>{{z}}</li>
+                
+
+              {% endfor %}
+            
+            </div>
+            {% endif %}
+            <br>
+            
+            {% if tables.2 %}
+            <button id="button2" onclick="table2()" draggable="true" ondragstart="dragStart(event)" type="button" class="btn btn-default">
+              {{tables.2}}
+
+        
+            </button>
+
+            <div style="display: none;" id="table2">
+            
+              {% for z in schema.2 %}
+
+                
+                 
+
+              
+              <li>{{z}}</li>
+                
+
+              {% endfor %}
+            
+            </div>
+            {% endif %}
+            <br>
+            
+            {% if tables.3 %}
+
+            <button id="button3" onclick="table3()" draggable="true" ondragstart="dragStart(event)" type="button" class="btn btn-default">
+              {{tables.3}}
+
+        
+            </button>
+
+            <div style="display: none;" id="table3">
+            
+              {% for z in schema.3 %}
+
+                
+                 
+
+              
+              <li>{{z}}</li>
+                
+
+              {% endfor %}
+            
+            </div>
+            {% endif %}
+            <br>
+            
+            {% if tables.4 %}
+
+            <button id="button4" onclick="table4()" draggable="true" ondragstart="dragStart(event)" type="button" class="btn btn-default">
+              {{tables.4}}
+
+        
+            </button>
+
+            <div style="display: none;" id="table4">
+            
+              {% for z in schema.4 %}
+
+                
+                 
+
+              
+              <li>{{z}}</li>
+                
+
+              {% endfor %}
+            
+            </div>
+            {% endif %}
+
+            <br>
+            
+            {% if tables.5 %}
+
+            <button id="button5" onclick="table5()" draggable="true" ondragstart="dragStart(event)" type="button" class="btn btn-default">
+              {{tables.5}}
+
+        
+            </button>
+
+            <div style="display: none;" id="table5">
+            
+              {% for z in schema.5 %}
+
+                
+                 
+
+              
+              <li>{{z}}</li>
+                
+
+              {% endfor %}
+            
+            </div>
+            {% endif %}
+        
+            
+      		
+  		</div>
+	   <h5 style="border-bottom: 1px solid #333;padding-bottom: 10px;" onclick="">{{databases.2}}
+      </h5>
+      <h5 style="border-bottom: 1px solid #333;padding-bottom: 10px;" onclick="">{{databases.3}}
+      </h5>   
+
+      
+    </div>
+
+  		
+  	</div>
+  	<div class="col-md-6">
+  		<h4>3. Visualizer</h4>
+      <div id="2" style="display: none;">
+      <div style="padding-top: 50px;"></div>
+        <button type="button" id="3" style="border: 1px dotted black">
+        <span class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" id="4">File</span>
+          
+        </button>
+        <div style="padding-bottom: 50px;"></div>
+        <button type="button" style="border: 1px dotted black">
+         <span class="droptarget" ondrop="drop1(event)" ondragover="allowDrop(event)" id="5"> Transform</span>
+        </button>
+        <div style="padding-bottom: 50px;"></div>
+        <button  type="button" style="border: 1px dotted black">
+         <span class="droptarget" ondrop="drop2(event)" ondragover="allowDrop(event)" id="6"> Output as mySQL</span>
+        </button>
+        <div style="padding-bottom: 30px;"></div>
+        
+       <input style="display: none;" name="csvfile2" type="file" id="csvfile2" accept=".csv" >
+        <button   class="btn btn-primary">Run the Mapping</button>
+        
+        
+      </div>
+      <div class="row"  >
+      <div class="col-md-6" id="8" style="display: none;">
+      <div style="padding-bottom: 40px;"></div>
+      <button  style="border: 1px dotted black" type="button" class="btn btn-default"><span class="droptarget" ondrop="drop3(event)" ondragover="allowDrop(event)" id="9">Table 1</span></button>
+      <input type="text" name="tab1" id="tab1" style="display: none;">
+
+      <div style="padding-bottom: 20px;"></div>
+      <button  style="border: 1px dotted black" type="button" class="btn btn-default"><span ondrop="drop4(event)" ondragover="allowDrop(event)" id="10">Table 2</span></button>
+      <input type="text" name="tab2" id="tab2" style="display: none;">
+        </div>
+        <div class="col-md-6" id="11" style="display: none;">
+        <h4 type="button" onclick="join()" class="btn btn-default" style="border: 1px dotted black">
+          Join
+        </h4><br>
+       <div  id="15" style=" display: none;border: 1px dotted black; padding: 20px;" >
+         <h5>Verify The Primary Key For Joining</h5>
+         <select name="join" id="b0" style="display: none;">
+         {% if schema.0  %}
+         <option selected disabled hidden></option>
+         {% for z in schema.0  %}
+
+       
+                <option>{{ z  }}</option>
+                
+             
+        
+
+      {% endfor %}
+      {% endif %}
+            
+         </select>
+         <select name="join2" id="b1" style="display: none;">
+         {% if schema.1  %}
+         <option selected disabled hidden></option>
+         {% for z in schema.1  %}
+
+       
+                <option>{{ z  }}</option>
+                
+             
+        
+
+      {% endfor %}
+      {% endif %}
+         </select>
+         <select name="join3" id="b2" style="display: none;">
+         {% if schema.2  %}
+         <option selected disabled hidden></option>
+         {% for z in schema.2  %}
+
+       
+                <option>{{ z  }}</option>
+                
+             
+        
+
+      {% endfor %}
+      {% endif %}
+         </select>
+         <select name="join4" id="b3" style="display: none;">
+         {% if schema.3  %}
+         <option selected disabled hidden></option>
+         {% for z in schema.3  %}
+
+       
+                <option>{{ z  }}</option>
+                
+             
+        
+
+      {% endfor %}
+      {% endif %}
+         </select>
+         <select name="join5" id="b4" style="display: none;">
+         {% if schema.4  %}
+         <option selected disabled hidden></option>
+         {% for z in schema.4  %}
+
+       
+                <option>{{ z  }}</option>
+                
+             
+        
+
+      {% endfor %}
+      {% endif %}
+         </select>
+
+         <br>
+         <button  type="button">Join</button>
+       </div>
+        <div style="padding-bottom:  50px"> </div>
+        <h4 onclick="transform()" style="border: 1px dotted black" class="btn btn-default" type="button">
+          Transform
+        </h4><br>
+        <div  id="16" style=" display: none;border: 1px dotted black; padding: 20px;" >
+         <h5>Which Transformation you want to apply</h5>
+         <select name="transform">
+            <option>ASC</option>
+            <option>DESC</option>
+            
+         </select><br>
+         <select name="transform2">
+         <div id="d1" style="display: none;">
+          {% if schema.1  %}
+         {% for z in schema.1  %}
+
+       
+                <option>{{ z  }}</option>
+                
+             
+        
+
+      {% endfor %}
+      {% endif %}
+      </div>
+      <div id="d0" style="display: none;">
+       {% if schema.0  %}
+         {% for z in schema.0  %}
+
+       
+                <option>{{ z  }}</option>
+                
+             
+        
+
+      {% endfor %}
+      {% endif %}
+      </div>
+      <div id="d2" style="display: none;">
+          {% if schema.2  %}
+         {% for z in schema.2  %}
+
+       
+                <option>{{ z  }}</option>
+                
+             
+        
+
+      {% endfor %}
+      {% endif %}
+      </div>
+      <div id="d3" style="display: none;">
+          {% if schema.3  %}
+         {% for z in schema.3  %}
+
+       
+                <option>{{ z  }}</option>
+                
+             
+        
+
+      {% endfor %}
+      {% endif %}
+      </div>
+      <div id="d4" style="display: none;">
+          {% if schema.4  %}
+         {% for z in schema.4  %}
+
+       
+                <option>{{ z  }}</option>
+                
+             
+        
+
+      {% endfor %}
+      {% endif %}
+      </div>
+            
+         </select><br>
+         
+         <button type="button">Transform</button>
+       </div>
+        <div style="padding-bottom : 50px"> </div>
+        <h4 onclick="output()" style="border: 1px dotted black" class="btn btn-default" type="button">
+          Output File Type
+        </h4>
+
+        <div  id="17" style=" display: none;border: 1px dotted black; padding: 20px;" >
+         <h5>Select Output File Type</h5>
+         <select name="output">
+            <option>mySQL</option>
+            <option>CSV</option>
+            
+         </select><br>
+         
+         
+       </div>
+       <div style="padding-bottom: 30px;"></div>
+
+       <!-- <input style="display: none;" name="ordercsv" type="file" value="C:\fakepath\orders.csv"> -->
+
+       <button class="btn btn-primary">Run The Mapping</button>
+       <div style="padding-bottom: 50px;"></div>
+
+          
+        </div>
+      </div>
+  	</div>
+    </form>
+  
+<script>
+function table0(){
+  document.getElementById('table0').style.display="block";
+
+
+}
+function table1(){
+  document.getElementById('table1').style.display="block";
+
+
+}
+function table2(){
+  document.getElementById('table2').style.display="block";
+
+
+}
+function table3(){
+  document.getElementById('table3').style.display="block";
+
+
+}
+function table4(){
+  document.getElementById('table4').style.display="block";
+
+
+}
+function table5(){
+  document.getElementById('table5').style.display="block";
+
+
+}
+
+
+function show3(){
+}
+
+function join(){
+  
+  document.getElementById('15').style.display="block";
+}
+
+function output(){
+  document.getElementById('17').style.display="block";
+}
+
+function transform(){
+  document.getElementById('16').style.display="block";
+}
+
+function show(){
+  document.getElementById("7").style.display="block";
+}
+
+       function dragStart(event) {
+        
+    event.dataTransfer.setData("Text", event.target.id);
+    view(event.target.id);
+
+
+}
+function view(x) {
+  if(x == "button0"){
+    document.getElementById('b0').style.display="block";
+    document.getElementById('d0').style.display="block";
+  }
+  if(x == "button1"){
+    document.getElementById('b1').style.display="block";
+    document.getElementById('d1').style.display="block";
+  }
+  if(x == "button2"){
+    document.getElementById('b2').style.display="block";
+    document.getElementById('d2').style.display="block";
+  }
+  if(x == "button3"){
+    document.getElementById('b3').style.display="block";
+    document.getElementById('d3').style.display="block";
+  }
+  if(x == "button4"){
+    document.getElementById('b4').style.display="block";
+    document.getElementById('d4').style.display="block";
+  }
+}
+
+function dragging(event) {
+  
+    
+}
+
+function allowDrop(event) {
+  
+    event.preventDefault();
+    
+}
+
+function drop(event) {
+  
+    document.getElementById("4").textContent = "File Added";
+    document.getElementById('showcsv').style.display="none";
+    event.preventDefault();
+    
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+
+    
+    
+    
+}
+function drop1(event) {
+  
+    document.getElementById("5").textContent = "Transformed";
+    document.getElementById('showcsv').style.display="none";
+    event.preventDefault();
+
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+    
+    
+    
+}
+function drop2(event) {
+  document.getElementById("6").textContent = "Table Created";
+    
+    document.getElementById('showcsv').style.display="none";
+    event.preventDefault();
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+    
+    
+    
+}
+function drop3(event) {
+  
+   
+    
+    
+    event.preventDefault();
+    var data = event.dataTransfer.getData("Text");
+    
+    var text = document.getElementById(data).innerHTML
+    
+    document.getElementById("9").textContent = "";
+    document.getElementById("tab1").value = text;
+    
+    
+    event.target.appendChild(document.getElementById(data).cloneNode(true));
+    
+    
+    
+}
+
+function drop4(event) {
+    
+    
+    event.preventDefault();
+    var data = event.dataTransfer.getData("Text");
+    var text = document.getElementById(data).innerHTML
+    
+    document.getElementById("10").textContent = "";
+    document.getElementById("tab2").value = text;
+    
+    event.target.appendChild(document.getElementById(data).cloneNode(true));
+    
+    
+    
+}
+
+	 var csv = document.getElementById('csv');
+	 var mysql = document.getElementById('mysql');
+	 var viewmysql = document.getElementById("viewmysql");
+	 var viewcsv = document.getElementById("viewcsv");
+   var selectedFile = document.getElementById('csvfile');
+function selectsource(){
+    var selectmysql = document.getElementById("selectmysql");
+    var selectcsv = document.getElementById("selectcsv");
+    if(csv.checked==true){
+      
+       selectcsv.style.textDecoration = "underline";
+       var x = document.getElementById('showcsv');
+       var a = document.getElementById('1');
+       
+       x.style.display = "block";
+      
+       document.getElementById("1").textContent=selectedFile.value;
+       document.getElementById("2").style.display="block";
+       document.getElementById("8").style.display="none";
+       
+
+    }
+    else if(mysql.checked="true"){
+      selectmysql.style.textDecoration = "underline";
+      var x = document.getElementById('showmy');
+      x.style.display="block";
+      document.getElementById('8').style.display="block"
+      document.getElementById('11').style.display="block"
+    }
+
+}
+	 
+
+$(function() {
+    $('input:radio[name="select"]').change(function() {
+        if ($(this).val() == '1') {
+            viewmysql.style.display = "block";
+            viewcsv.style.display = "none"
+        } else {
+            viewmysql.style.display = "none";
+            viewcsv.style.display = "block"
+        }
+    });
+});
+	 mysql.checked=false;
+	  mysql.checked=false;
+	  if(mysql.checked=false){
+
+	  	
+	  	 viewmysql.style.display = "none";
+	  }
+
+	  if(mysql.checked=false){
+	  	
+	  	 var viewmysql = document.getElementById("viewmysql");
+	  	 viewmysql.style.display = "none";
+	  }
+	
+
+</script>
+
+</body>
+</html>
